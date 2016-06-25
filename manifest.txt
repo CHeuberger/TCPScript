@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+Main-Class: cfh.tcpscript.Main
+Class-Path: tcpserver.jar
+Implementation-Vendor: Carlos F. Heuberger
+

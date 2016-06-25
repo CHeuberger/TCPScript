@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="WINDOWS-1252"?>
+<jardesc>
+<jar path="D:/develop/eclipse/TCPscript/dist/tcpscript.jar"/>
+<options buildIfNeeded="true" compress="true" descriptionLocation="/TCPscript/tcpscript.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+<storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+<selectedProjects/>
+<manifest generateManifest="false" mainClassHandleIdentifier="=TCPscript/src&lt;cfh.tcpscript{Main.java[Main" manifestLocation="/TCPscript/manifest.txt" manifestVersion="1.0" reuseManifest="false" saveManifest="true" usesManifest="true">
+<sealing sealJar="false">
+<packagesToSeal/>
+<packagesToUnSeal/>
+</sealing>
+</manifest>
+<selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+<javaElement handleIdentifier="=TCPscript/src"/>
+</selectedElements>
+</jardesc>
