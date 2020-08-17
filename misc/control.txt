@@ -1,0 +1,38 @@
+# control file
+
+# sleep (sleep <milliseconds>)
+sleep 1000
+
+# listen at port (listen <name> <port>)
+listen sAM 5501
+
+# header and footer for outgoing data (header|footer <channel> <data>)
+header sAM \u0002
+footer sAM _\u0003
+
+
+# wait channel connected (wait <channel>)
+wait sAM
+
+# print message (print <message...>)
+print OK
+sleep 500
+
+# connect (connect <name> <address> <port>)
+connect cAM 127.0.0.1 5500
+
+# send to channel (send <channel> <message>)
+send sAM You have 2 seconds to reply...
+
+sleep 1000
+send cAM still 1 second left...
+
+sleep 1000
+send sAM BYE\n\nBYE
+
+# close channel (close <channel>)
+close cAM
+sleep 100
+close sAM
+sleep 1000
+
