@@ -319,10 +319,12 @@ public abstract class Channel {
             return server.getConnections().size();
         }
 
+        @Override
         public void addConnectionListener(ConnectionListener listener) {
             new RuntimeException("not implemented").printStackTrace();
         }
         
+        @Override
         public void removeConnectionListener(ConnectionListener listener) {
             new RuntimeException("not implemented").printStackTrace();
         }

@@ -128,6 +128,7 @@ public class ScriptEngine implements Runnable {
         tmp.interrupt();
     }
     
+    @Override
     public void run() {
         String line;
         try {
@@ -246,18 +247,22 @@ public class ScriptEngine implements Runnable {
             logConListener = new LogConnListener(prefix);
         }
         
+        @Override
         public void started(Server server) {
             println(prefix + " started server");
         }
         
+        @Override
         public void connected(Server server, Connection connection) {
             connection.addListener(logConListener);
         }
         
+        @Override
         public void shutdown(Server server) {
             println(prefix + " server shut down");
         }
 
+        @Override
         public void handleException(Server server, Exception ex) {
             println(prefix + " ERROR: " + ex);
         }
@@ -273,22 +278,27 @@ public class ScriptEngine implements Runnable {
             this.prefix = prefix;
         }
 
+        @Override
         public void started(Connection connection) {
             println(prefix + "\u21AD" + "started connection " + connection.getRemoteAddress());
         }
 
+        @Override
         public void sentData(Connection connection, byte[] data) {
             println(prefix + "\u21A4" + StringHelper.toString(data));
         }
 
+        @Override
         public void receivedData(Connection connection, byte[] data) {
             println(prefix + "\u21E5" + StringHelper.toString(data));
         }
 
+        @Override
         public void shutdown(Connection connection) {
             println(prefix + "\u2022" + "shutdown connection " + connection.getRemoteAddress());
         }
 
+        @Override
         public void handleException(Connection connection, Exception ex) {
             println(prefix + " ERROR: " + ex);
         }
