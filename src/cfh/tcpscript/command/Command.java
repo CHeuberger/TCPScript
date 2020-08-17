@@ -46,6 +46,7 @@ public abstract class Command {
     }
     
     public static void init() {
+        new AbortCommand();
         new ConnectCommand();
         new FooterCommand();
         new HeaderCommand();

@@ -12,10 +12,10 @@ import cfh.tcpscript.ScriptEngine;
  * 
  * @author Carlos Heuberger
  */
-class CloseCommand extends Command {
+class AbortCommand extends Command {
 
-    CloseCommand() {
-        super("close", "<name>", "close the channel streams");
+    AbortCommand() {
+        super("abort", "<name>", "abort the channel, closing the socket");
     }
     
     @Override
@@ -30,7 +30,7 @@ class CloseCommand extends Command {
             throw new NameNotFoundException(name);
         }
 
-        channel.stop(0);
+        channel.abort(0);
     }
 
 }

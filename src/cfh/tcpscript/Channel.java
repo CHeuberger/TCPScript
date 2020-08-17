@@ -150,7 +150,9 @@ public abstract class Channel {
     public abstract void start() throws IOException;
     
     public abstract void stop(int subchannel) throws IOException;
-    
+
+    public abstract void abort(int subchannel) throws IOException;
+ 
     public abstract void waitConnect(Appendable debug) throws InterruptedException;
     
     public abstract void waitPattern(String regex, Appendable debug) throws InterruptedException;
@@ -197,6 +199,20 @@ public abstract class Channel {
             } else {
                 Connection connection = server.getConnections().get(subchannel-1);
                 connection.stop();
+            }
+        }
+        
+        @Override
+        public void abort(int subchannel) throws IOException {
+            if (subchannel == 0) {
+                server.stop();
+                ArrayList<Connection> copy = new ArrayList<Connection>(server.getConnections());
+                for (Connection connection : copy) {
+                    connection.close();
+                }
+            } else {
+                Connection connection = server.getConnections().get(subchannel-1);
+                connection.close();
             }
         }
         
@@ -356,6 +372,13 @@ public abstract class Channel {
             if (subchannel != 0)
                 throw new IllegalArgumentException("No subchannels");
             client.stop();
+        }
+        
+        @Override
+        public void abort(int subchannel) throws IOException {
+            if (subchannel != 0)
+                throw new IllegalArgumentException("No subchannels");
+            client.close();
         }
         
         @Override
