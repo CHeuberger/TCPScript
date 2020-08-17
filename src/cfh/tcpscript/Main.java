@@ -63,7 +63,11 @@ import cfh.tcpscript.command.Command;
  */
 public class Main implements Appendable {
 
-    private static final String VERSION = "v 0.7";
+    private static final String VERSION;
+    static {
+        String v = Main.class.getPackage().getImplementationVersion();
+        VERSION = v == null ? "dev" : "v " + v;
+    }
 
     private static final String AUTHOR = "by Carlos Heuberger - " + VERSION;
     static final String TITLE = "TCP Script - " + VERSION;
@@ -130,21 +134,25 @@ public class Main implements Appendable {
         initPreferences();
         initActions();
         SwingUtilities.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 initGUI();
             }
         });
     }
 
+    @Override
     public Appendable append(CharSequence seq) {
         append0(seq.toString());
         return this;
     }
 
+    @Override
     public Appendable append(CharSequence seq, int start, int end) {
         return append(seq.subSequence(start, end));
     }
 
+    @Override
     public Appendable append(char ch) {
         append0(Character.toString(ch));
         return this;
@@ -597,7 +605,7 @@ public class Main implements Appendable {
     }
 
     private void doMonitor() {
-        monitor.toggleVisible();;
+        monitor.toggleVisible();
     }
 
     private void doQuit() {
@@ -664,6 +672,7 @@ public class Main implements Appendable {
     }
 
     private void listAbout(JTextArea text) {
+        String v = Connection.class.getPackage().getImplementationVersion();
         text.append(
                 "====================  TCP SCRIPT  by Carlos Heuberger - " + VERSION + "\n" +
                 "A program to execute scripts for openning TCP connections to\n" +
@@ -671,13 +680,7 @@ public class Main implements Appendable {
                 "Usefull to help testing communications software where repetitive\n" +
                 "sending of data packets is needed.\n" +
                 "\n" +
-                "Revisions: " + getClass().getName() + " $Revision: 1.26 $\n" +
-                "           " + ScriptEngine.getRevision() + "\n" +
-                "           " + Command.getRevision() + "\n" +
-                "           " + Channel.getRevision() + "\n" +
-                "           " + Monitor.getRevision() + "\n" +
-                "           " + Server.getRevision() + "\n" +
-                "           " + Connection.getRevision() + "\n" +
+                "Server: " + (v==null ? "dev" : "v " + v) + "\n" +
                 "\n\n");
     }
 

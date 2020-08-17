@@ -58,6 +58,7 @@ public class ServerChannelTest {
             socket.connect(new InetSocketAddress("localhost", port), 200);
             fail("expected SocketTimeoutException");
         } catch (SocketTimeoutException expected) {
+            //
         }
         socket.close();
 
@@ -85,6 +86,7 @@ public class ServerChannelTest {
             socket.connect(new InetSocketAddress("localhost",port), 200);
             fail("expected SocketTimeoutException");
         } catch (SocketTimeoutException expected) {
+            //
         }
         socket.close();
     }
@@ -94,6 +96,7 @@ public class ServerChannelTest {
         channel.start();
         
         Callable<Long> waitConnection = new Callable<Long>() {
+            @Override
             public Long call() throws Exception {
                 channel.waitConnect(null);
                 return System.currentTimeMillis();
@@ -104,6 +107,7 @@ public class ServerChannelTest {
             future.get(500, MILLISECONDS);
             fail("Timeout expected: no connection");
         } catch (TimeoutException expected) {
+            //
         }
         
         Socket socket = new Socket("localhost", port);
@@ -116,6 +120,7 @@ public class ServerChannelTest {
         try {
             socket.close();
         } catch (IOException ignored) {
+            //
         }
     }
 
@@ -125,6 +130,7 @@ public class ServerChannelTest {
         channel.start();
         
         Callable<Long> waitPattern = new Callable<Long>() {
+            @Override
             public Long call() throws Exception {
                 channel.waitPattern(regex, null);
                 return System.currentTimeMillis();
@@ -135,6 +141,7 @@ public class ServerChannelTest {
             future.get(500, MILLISECONDS);
             fail("Timeout expected: not connected");
         } catch (TimeoutException expected) {
+            //
         }
         
         Socket socket = new Socket("localhost", port);
@@ -147,6 +154,7 @@ public class ServerChannelTest {
         try {
             socket.close();
         } catch (IOException ignored) {
+            //
         }
     }
 

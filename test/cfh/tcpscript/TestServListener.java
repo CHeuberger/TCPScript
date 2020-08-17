@@ -71,20 +71,24 @@ public class TestServListener implements ServerListener {
         return connections;
     }
     
+    @Override
     public void connected(Server server, Connection connection) {
         connections.add(connection);
         received.put(connection, new ArrayList<byte[]>());
         connection.addListener(connListener);
     }
     
+    @Override
     public void handleException(Server server, Exception ex) {
         exceptions.add(ex);
     }
     
+    @Override
     public void shutdown(Server server) {
         wasShutdown = true;
     }
     
+    @Override
     public void started(Server server) {
         wasStarted = true;
     }
@@ -114,6 +118,7 @@ public class TestServListener implements ServerListener {
         try {
             Thread.sleep(10);
         } catch (InterruptedException ignored) {
+            //
         }
     }
 }

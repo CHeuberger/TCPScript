@@ -17,6 +17,7 @@ public class ColumnIndicator implements CaretListener {
         this.output = statusColumn;
     }
 
+    @Override
     public void caretUpdate(CaretEvent ev) {
         if (ev.getSource() instanceof JTextComponent) {
             JTextComponent comp = (JTextComponent) ev.getSource();
